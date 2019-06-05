@@ -22,7 +22,8 @@ if __name__ == '__main__':
 
     # FILL IN YOUR CODE HERE
     # Please try both goTo and cmdPosition
-    
+    cf.goTo(goal = np.array([2,2,2]), yaw = 0.0, duration = 3.0, relative = False, groupMask = 0)
+    time.sleep(3.0)
 
     
 
