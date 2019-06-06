@@ -8,7 +8,7 @@ from crazyflieParser import CrazyflieParser
 if __name__ == '__main__':
     
     index = 1   # for cf1
-    initialPosition = [0,0,0] # x,y,z coordinate for this crazyflie
+    initialPosition = [0,1.5,0] # x,y,z coordinate for this crazyflie
     cfs = CrazyflieParser(index, initialPosition)
     cf = cfs.crazyflies[0]
     time = cfs.timeHelper
