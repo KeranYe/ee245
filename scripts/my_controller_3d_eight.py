@@ -11,12 +11,12 @@ def eight_traj():
     for i in range(1,101):
         x = cos(t[i])
         y = sin(t[i])
-        current = np.array([[y],[x],[1]])
+        current = np.array([[y],[x],[1+0.3*sin(t[i])]])
         data = np.append(data,current,axis =1)
     for i in range(101):
         x = 2 - cos(t[i])
         y = sin(t[i])
-        current = np.array([[y],[x],[1]])
+        current = np.array([[y],[x],[1+0.3*sin(t[i])]])
         data = np.append(data,current,axis =1)
     data = data.T
     data = data + np.array([0, -1, 0])
