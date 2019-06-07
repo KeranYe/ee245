@@ -7,19 +7,20 @@ from crazyflieParser import CrazyflieParser
 
 def eight_traj():
     t = np.linspace(0,2*pi,101)
-    data = np.array([[0],[1],[1]])
+    data = np.array([[0],[1],[2]])
     for i in range(1,101):
-        x = cos(t[i])
-        y = sin(t[i])
-        current = np.array([[y],[x],[1+0.3*sin(t[i])]])
+        y = cos(t[i])
+        x = sin(t[i])
+        current = np.array([[x],[y],[2*(1+0.15*(cos(t[i])-1)+0.15*sin(t[i]))]])
         data = np.append(data,current,axis =1)
     for i in range(101):
-        x = 2 - cos(t[i])
-        y = sin(t[i])
-        current = np.array([[y],[x],[1+0.3*sin(t[i])]])
+        y = 2 - cos(t[i])
+        x = sin(t[i])
+        current = np.array([[x],[y],[2*(1-0.15*(cos(t[i])-1)+0.15*sin(t[i]))]])
         data = np.append(data,current,axis =1)
     data = data.T
     data = data + np.array([0, -1, 0])
+    data = 0.5 * data
     return data
 
 if __name__ == '__main__':

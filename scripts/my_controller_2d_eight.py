@@ -7,19 +7,20 @@ from crazyflieParser import CrazyflieParser
 
 def eight_traj():
     t = np.linspace(0,2*pi,101)
-    data = np.array([[0],[1],[1]])
+    data = np.array([[0],[1],[2]])
     for i in range(1,101):
-        x = cos(t[i])
-        y = sin(t[i])
-        current = np.array([[y],[x],[1]])
+        y = cos(t[i])
+        x = sin(t[i])
+        current = np.array([[x],[y],[2]])
         data = np.append(data,current,axis =1)
     for i in range(101):
-        x = 2 - cos(t[i])
-        y = sin(t[i])
-        current = np.array([[y],[x],[1]])
+        y = 2 - cos(t[i])
+        x = sin(t[i])
+        current = np.array([[x],[y],[2]])
         data = np.append(data,current,axis =1)
     data = data.T
     data = data + np.array([0, -1, 0])
+    data = 0.5 * data
     return data
 
 if __name__ == '__main__':
@@ -46,8 +47,9 @@ if __name__ == '__main__':
     cf.goTo(goal = traj[0,:], yaw = 0.0, duration = 5.0, relative = False, groupMask = 0)
     time.sleep(5.0)
     
+    
     # Move along eight trajectory
-    for i in range(0,202):
+    for i in range(1,202):
         cf.cmdPosition(traj[i,:], yaw = 0)
         time.sleep(0.1)
 
