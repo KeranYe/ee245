@@ -6,16 +6,16 @@ import numpy as np
 from crazyflieParser import CrazyflieParser
 
 def eight_traj():
-    t = np.linspace(0,2*pi,100)
+    t = np.linspace(0,2*pi,101)
     data = np.array([[0],[1],[1]])
-    for i in range(100):
-        x = 0.5*cos(t[i])
-        y = 0.5*sin(t[i])
+    for i in range(1,101):
+        x = cos(t[i])
+        y = sin(t[i])
         current = np.array([[y],[x],[1]])
         data = np.append(data,current,axis =1)
-    for i in range(100):
-        x = 1 - 0.5*cos(t[i])
-        y = 0.5*sin(t[i])
+    for i in range(101):
+        x = 2 - cos(t[i])
+        y = sin(t[i])
         current = np.array([[y],[x],[1]])
         data = np.append(data,current,axis =1)
     data = data.T
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     time = cfs.timeHelper
     
     # Get input for eight trajectory
-    eight_traj = eight_traj()
+    traj = eight_traj()
    
     cf.setParam("commander/enHighLevel", 1)
     cf.setParam("stabilizer/estimator", 2) # Use EKF
@@ -42,12 +42,12 @@ if __name__ == '__main__':
     time.sleep(5.0)
     
     # GO to the first point of eight trajectory
-    cf.goTo(goal = eight_traj[0,:], yaw = 0.0, duration = 5.0, relative = False, groupMask = 0)
+    cf.goTo(goal = traj[0,:], yaw = 0.0, duration = 5.0, relative = False, groupMask = 0)
     time.sleep(5.0)
     
     # Move along eight trajectory
-    for i in range(200):
-        cf.cmdPosition(eight_traj[i,:], yaw = 0)
+    for i in range(0,202):
+        cf.cmdPosition(traj[i,:], yaw = 0)
         time.sleep(0.1)
 
     # Go back to landing
